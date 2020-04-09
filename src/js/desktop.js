@@ -41,7 +41,7 @@
       'app': kintone.app.getId(),
       'query': 'order by $id asc',
       'fields': ['id','name', 'job', 'id_employee', 'date', 'updated_date']
-    }, async function(resp) {
+    }, function(resp) {
       let dataToCompare = resp['records'].map(item => {
         // delete item.id;
         item['name'] = {'value': item['name']['value']};
