@@ -41,7 +41,7 @@
       'app': kintone.app.getId(),
       'query': 'order by $id asc',
       'fields': ['id','name', 'job', 'id_employee', 'date', 'updated_date']
-    }, function(resp) {
+    }, async function(resp) {
       let dataToCompare = resp['records'].map(item => {
         // delete item.id;
         item['name'] = {'value': item['name']['value']};
@@ -65,7 +65,7 @@
           });
         }
         for (let i = 0;i<dataToCompare.length;i++){
-          if (dataToCompare[i]['updated_date'] !== dataToPut[i]['updated_date']){
+          if (dataToCompare[i]['updated_date']['value'] !== dataToPut[i]['updated_date']['value']){
             updateRecord(kintone.app.getId(),dataToCompare[i]['id']['value'], dataToPut[i]);
           }
         }
@@ -76,13 +76,13 @@
           deleteRecrod(kintone.app.getId(),arr)
         }
         for (let i = 0;i<dataToPut.length;i++){
-          if (dataToCompare[i]['updated_date'] !== dataToPut[i]['updated_date']){
+          if (dataToCompare[i]['updated_date']['value'] !== dataToPut[i]['updated_date']['value']){
             updateRecord(kintone.app.getId(), dataToCompare[i]['id']['value'], dataToPut[i]);
           }
         }
       } else {
         for (let i = 0;i<dataToCompare.length;i++){
-          if (dataToCompare[i]['updated_date'] !== dataToPut[i]['updated_date']){
+          if (dataToCompare[i]['updated_date']['value'] !== dataToPut[i]['updated_date']['value']){
             updateRecord(kintone.app.getId(), dataToCompare[i]['id']['value'], dataToPut[i]);
           }
         }
@@ -99,7 +99,7 @@
     }, function(error) {
       // error
       console.log(error);
-    })
+    });
   }
   getDataDB().then(data => {
     const dataToPut = data.map(item => {
