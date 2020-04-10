@@ -63,6 +63,8 @@
       <workItem from="1586192215279" duration="2000" />
       <workItem from="1586241657171" duration="17550000" />
       <workItem from="1586330967273" duration="14181000" />
+      <workItem from="1586443613295" duration="3387000" />
+      <workItem from="1586484907829" duration="4859000" />
     </task>
     <task id="LOCAL-00001" summary="add dir for git ignore">
       <created>1586421737806</created>
@@ -78,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586426898031</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="remove unuse async">
+      <created>1586434093350</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1586434093350</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,7 +98,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="add dir for git ignore" />
     <MESSAGE value="fix bug compare value not object" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug compare value not object" />
+    <MESSAGE value="remove unuse async" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove unuse async" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#ESLint" timestamp="1585559310744">
@@ -100,10 +110,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="718" y="391" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1586260629040" />
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1586426894423">
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1586434091761">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586426894423" />
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586434091761" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1586432434760">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -116,14 +126,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585557191240" />
-    <state x="784" y="231" key="RollbackChangesDialog" timestamp="1586434069618">
+    <state x="784" y="231" key="RollbackChangesDialog" timestamp="1586448341307">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="784" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586434069618" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1586426899547">
+    <state x="784" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586448341307" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1586434094803">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586426899547" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586434094803" />
     <state x="603" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585640794654">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -101,18 +101,6 @@
       console.log(error);
     });
   }
-  getDataDB().then(data => {
-    const dataToPut = data.map(item => {
-      delete item.id;
-      item['name'] = {'value': item['name']};
-      item['job'] = {'value': item['job']};
-      item['id_employee'] = {'value': item['id_employee']};
-      item['date'] = {'value': item['date']};
-      item['updated_date'] = {'value': item['updated_date']};
-      return item;
-    });
-    synchronizedDB(dataToPut);
-  });
 
   function createModal(){
     if (document.getElementById ('dialog') != null) {
@@ -191,6 +179,7 @@
     if (document.getElementById ('my_index_button') != null) {
       return;
     }
+
     // Set a button
     let myIndexButton = document.createElement('button');
     myIndexButton.id = 'my_index_button';
@@ -200,6 +189,18 @@
     myIndexButton.onclick = function() {
       createModal();
     };
+    getDataDB().then(data => {
+      const dataToPut = data.map(item => {
+        delete item.id;
+        item['name'] = {'value': item['name']};
+        item['job'] = {'value': item['job']};
+        item['id_employee'] = {'value': item['id_employee']};
+        item['date'] = {'value': item['date']};
+        item['updated_date'] = {'value': item['updated_date']};
+        return item;
+      });
+      synchronizedDB(dataToPut);
+    });
     kintone.app.getHeaderMenuSpaceElement().appendChild(myIndexButton);
     // create the inner modal div with appended argument
   });
