@@ -14,6 +14,7 @@
       "record":  record
     }, function(resp) {
       // success
+      window.location.reload();
       console.log(resp);
     }, function(error) {
       // error
@@ -26,6 +27,7 @@
       'ids': record_id
     }, function(resp) {
       // success
+      window.location.reload();
       console.log(resp);
     }, function(error) {
       // error
@@ -58,6 +60,7 @@
             'record': dataToPut[i]
           }, function(resp) {
             // success
+            window.location.reload();
             console.log(resp);
           }, function(error) {
             // error
