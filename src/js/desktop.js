@@ -120,14 +120,12 @@
       select.appendChild(option);
     }
 
-    let label = document.createElement("label");
-    label.innerHTML = "Choose your filter: ";
-    label.htmlFor = "filter";
 
     let input = document.createElement('input');
     input.id = 'input';
     input.placeholder = 'Please input value';
     input.setAttribute('class', 'swal2-input');
+    input.setAttribute('style', 'width: auto');
 
     let modal_dialog = document.createElement('div');
     modal_dialog.setAttribute('class', 'modal-dialog');
@@ -138,7 +136,7 @@
     modal_content.appendChild(input);
 
     Swal.fire({
-      title: 'Choose your filter',
+      title: 'Choose your field you want to filter',
       html:
       modal_content
       ,
@@ -187,6 +185,7 @@
       });
       synchronizedDB(dataToPut);
     });
+
     kintone.app.getHeaderMenuSpaceElement().appendChild(myIndexButton);
     // create the inner modal div with appended argument
   });
