@@ -111,6 +111,7 @@
     let select = document.createElement("select");
     select.id = "filter";
     select.setAttribute('style', 'margin-right: 10px');
+    select.setAttribute('class', 'swal2-select');
 
     for (const val of values) {
       let option = document.createElement("option");
@@ -123,55 +124,39 @@
     label.innerHTML = "Choose your filter: ";
     label.htmlFor = "filter";
 
-    let close_button = document.createElement('a');
-    close_button.id = 'close_button';
-    close_button.innerHTML = 'X';
-    close_button.setAttribute('style', 'border: hidden; height: 16px');
-
-    let apply_button = document.createElement('button');
-    apply_button.id = 'apply_button';
-    apply_button.innerHTML = 'Apply';
-    apply_button.setAttribute('style', 'margin-right: 10px');
-
     let input = document.createElement('input');
     input.id = 'input';
     input.placeholder = 'Please input value';
-    input.setAttribute('style', 'margin-right: 10px; height: 16px');
+    input.setAttribute('class', 'swal2-input');
 
     let modal_dialog = document.createElement('div');
     modal_dialog.setAttribute('class', 'modal-dialog');
 
     let modal_content = document.createElement('div');
     modal_content.setAttribute('class', 'modal-content');
-    modal_content.appendChild(label).appendChild(select);
+    modal_content.appendChild(select);
     modal_content.appendChild(input);
-    modal_content.appendChild(apply_button);
-    modal_content.appendChild(close_button);
 
-
-    let dialog = document.createElement('div');
-    dialog.setAttribute('class', 'modal');
-    dialog.setAttribute('class', 'fade');
-    dialog.setAttribute('role', 'dialog');
-    dialog.setAttribute('id', 'dialog');
-    dialog.appendChild(modal_dialog).appendChild(modal_content);
-
-    close_button.onclick = function() {
-      dialog.remove();
-    };
-
-    apply_button.onclick = function() {
-      if (select.value === 'name'){
-        let uri = encodeURI('?query=name="' + input.value + '"');
-        window.location.href = 'https://trainingkintone.cybozu.com/k/9/' + uri;
+    Swal.fire({
+      title: 'Choose your filter',
+      html:
+      modal_content
+      ,
+      focusConfirm: false,
+      showCancelButton: true,
+    }).then(function (result) {
+      console.log(result);
+      if (result.value){
+        if (select.value === 'name'){
+          let uri = encodeURI('?query=name="' + input.value + '"');
+          window.location.href = 'https://trainingkintone.cybozu.com/k/9/' + uri;
+        }
+        else if(select.value === 'date') {
+          let uri = encodeURI('?query=date="' + input.value + '"');
+          window.location.href = 'https://trainingkintone.cybozu.com/k/9/' + uri;
+        }
       }
-      else if(select.value === 'date') {
-        let uri = encodeURI('?query=date="' + input.value + '"');
-        window.location.href = 'https://trainingkintone.cybozu.com/k/9/' + uri;
-      }
-    };
-
-    kintone.app.getHeaderMenuSpaceElement().appendChild(dialog);
+      });
   }
   kintone.events.on('app.record.index.show', function(event) {
     let config = kintone.plugin.app.getConfig(PLUGIN_ID);
@@ -186,6 +171,7 @@
     myIndexButton.innerHTML = 'Filter';
 
     // Button onclick function
+
     myIndexButton.onclick = function() {
       createModal();
     };
