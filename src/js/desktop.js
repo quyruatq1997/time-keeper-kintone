@@ -7,11 +7,10 @@
     return data;
 
   }
-  function updateRecord(app_id,record_id,record){
-    kintone.api(kintone.api.url('/k/v1/record', true), 'PUT', {
+  function updateRecord(app_id,records){
+    kintone.api(kintone.api.url('/k/v1/records', true), 'PUT', {
       "app": app_id,
-      "id": record_id,
-      "record":  record
+      "records":  records
     }, function(resp) {
       // success
       window.location.reload();
@@ -54,40 +53,66 @@
         return item;
       });
       if (dataToPut.length > dataToCompare.length){
+        let data = [];
         for (let i = dataToCompare.length;i<dataToPut.length;i++){
-          kintone.api(kintone.api.url('/k/v1/record', true), 'POST', {
-            'app': kintone.app.getId(),
-            'record': dataToPut[i]
-          }, function(resp) {
-            // success
-            window.location.reload();
-            console.log(resp);
-          }, function(error) {
-            // error
-            console.log(error);
-          });
+          data.push(dataToPut[i]);
         }
+        kintone.api(kintone.api.url('/k/v1/records', true), 'POST', {
+          'app': kintone.app.getId(),
+          'records': data
+        }, function(resp) {
+          // success
+          window.location.reload();
+          console.log(resp);
+        }, function(error) {
+          // error
+          console.log(error);
+        });
+        let dataToUpdate = [];
         for (let i = 0;i<dataToCompare.length;i++){
           if (dataToCompare[i]['updated_date']['value'] !== dataToPut[i]['updated_date']['value']){
-            updateRecord(kintone.app.getId(),dataToCompare[i]['id']['value'], dataToPut[i]);
+            let data = {
+              id: parseInt(dataToCompare[i]['id']['value']),
+              record: dataToPut[i]
+            };
+            dataToUpdate.push(data);
           }
+        }
+        if (dataToUpdate.length !== 0){
+          updateRecord(kintone.app.getId(), dataToUpdate);
         }
       } else if (dataToPut.length < dataToCompare.length){
+        let arr = [];
         for (let i = dataToCompare.length-1;i>=dataToPut.length;i--){
-          let arr = [];
           arr.push(dataToCompare[i]['id']['value']);
-          deleteRecrod(kintone.app.getId(),arr)
         }
+        deleteRecrod(kintone.app.getId(),arr);
+        let dataToUpdate = [];
         for (let i = 0;i<dataToPut.length;i++){
           if (dataToCompare[i]['updated_date']['value'] !== dataToPut[i]['updated_date']['value']){
-            updateRecord(kintone.app.getId(), dataToCompare[i]['id']['value'], dataToPut[i]);
+            let data = {
+              id: parseInt(dataToCompare[i]['id']['value']),
+              record: dataToPut[i]
+            };
+            dataToUpdate.push(data);
           }
         }
+        if (dataToUpdate.length !== 0){
+          updateRecord(kintone.app.getId(), dataToUpdate);
+        }
       } else {
+        let dataToUpdate = [];
         for (let i = 0;i<dataToCompare.length;i++){
           if (dataToCompare[i]['updated_date']['value'] !== dataToPut[i]['updated_date']['value']){
-            updateRecord(kintone.app.getId(), dataToCompare[i]['id']['value'], dataToPut[i]);
+            let data = {
+              id: parseInt(dataToCompare[i]['id']['value']),
+              record: dataToPut[i]
+            };
+            dataToUpdate.push(data);
           }
+        }
+        if (dataToUpdate.length !== 0){
+          updateRecord(kintone.app.getId(), dataToUpdate);
         }
       }
       if (resp['records'] == null){
@@ -103,6 +128,7 @@
       // error
       console.log(error);
     });
+
   }
 
   function createModal(){
